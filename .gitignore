@@ -3,7 +3,11 @@ __pycache__/
 *.pyc
 venv/
 .env
+.env.*
+!.env.example
+.pytest_cache/
 **/.venv
 .adk/
 *.db
 **/.DS_Store
+reports/evidence/*.log

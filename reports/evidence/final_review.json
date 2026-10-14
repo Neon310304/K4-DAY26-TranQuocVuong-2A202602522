@@ -1,0 +1,280 @@
+{
+  "timestamp_utc": "2026-10-14T10:51:16.022637+00:00",
+  "scope": "submission_local_evidence_and_index_review_before_commit_and_push",
+  "credential_scan": {
+    "candidate_files": 114,
+    "status": "passed",
+    "env_ignored": true,
+    "leaking_files": [],
+    "scope": "known_local_API_key_values_in_Git_candidate_bytes;_screenshots_visually_reviewed"
+  },
+  "documentation_links": {
+    "checked": 169,
+    "broken": []
+  },
+  "source_hashes_check": {
+    "comparisons": 114,
+    "mismatches": [],
+    "historical_artifacts_excluded": [
+      "function_calling_yescale.json",
+      "live_checks.json"
+    ]
+  },
+  "test_evidence": {
+    "path": "reports/evidence/pytest.xml",
+    "tests": 35,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "tests_rerun_in_final_checker": true
+  },
+  "offline_checker": {
+    "passed": true,
+    "checks": {
+      "tests": {
+        "status": "passed",
+        "evidence": "reports/evidence/pytest.xml"
+      },
+      "weather_client.py": {
+        "status": "passed"
+      },
+      "versioned_client.py": {
+        "status": "passed"
+      },
+      "registry_client.py": {
+        "status": "passed"
+      },
+      "setup": {
+        "status": "passed",
+        "evidence": "reports/evidence/local_setup.json"
+      }
+    }
+  },
+  "step03_production": {
+    "evidence": "reports/evidence/production/production_results.json",
+    "checks_passed": 10,
+    "checks_total": 10,
+    "auth_url": "http://127.0.0.1:8002/mcp",
+    "invalid_token_http_statuses": [
+      401
+    ],
+    "missing_token_http_status": 401,
+    "auth_server_stopped": true,
+    "auth_port_closed_at_review": true,
+    "screenshot_required_names": [
+      "screenshots/03a-auth-ok.png",
+      "screenshots/03a-auth-fail.png",
+      "screenshots/03b-registry.png",
+      "screenshots/03c-versioning.png"
+    ],
+    "screenshot_type": "saved_stdout_and_actual_access_log_browser_capture",
+    "visually_reviewed": true,
+    "native_terminal_screenshot": "missing",
+    "execution_checkpoint": "passed",
+    "full_codelab_evidence_complete": false
+  },
+  "screenshots": [
+    {
+      "path": "screenshots/00-repo-fork.png",
+      "sha256": "18cdbc068844ef408e8cd08baedac444d585826677b38448c083a9c2ffde5425",
+      "bytes": 83983
+    },
+    {
+      "path": "screenshots/01-function-calling-gemini.png",
+      "sha256": "827bd0ac5af8f17973c3f74eeb6af7ef4b201c4f8360a01b5834763224452d16",
+      "bytes": 41106
+    },
+    {
+      "path": "screenshots/01-function-calling.png",
+      "sha256": "827bd0ac5af8f17973c3f74eeb6af7ef4b201c4f8360a01b5834763224452d16",
+      "bytes": 41106
+    },
+    {
+      "path": "screenshots/02-mcp-client.png",
+      "sha256": "7286673f887e64061c095079113557de29cc5c88c46ec89acb5f10915db12063",
+      "bytes": 14370
+    },
+    {
+      "path": "screenshots/02-mcp-stdio.png",
+      "sha256": "7286673f887e64061c095079113557de29cc5c88c46ec89acb5f10915db12063",
+      "bytes": 14370
+    },
+    {
+      "path": "screenshots/03-auth.png",
+      "sha256": "86b1150193eae88af57ab0c5e2d3214cfc7910d2ae9d39b292bca9b1fa5e5122",
+      "bytes": 11763
+    },
+    {
+      "path": "screenshots/03-registry.png",
+      "sha256": "15f9d2775d20377b365ffc68f3eb8d8ff32e9e70e3d6e3941cd86e3b1279a8cd",
+      "bytes": 40658
+    },
+    {
+      "path": "screenshots/03-versioning.png",
+      "sha256": "3aef9fed44c5a55917d4dc7543021fd143b99a463b596519423a7420a67e2610",
+      "bytes": 38391
+    },
+    {
+      "path": "screenshots/03a-auth-fail.png",
+      "sha256": "88c90daccf51e5b281ae0239733d1aff7603f3145211ead6d66051da8a262ce6",
+      "bytes": 20565
+    },
+    {
+      "path": "screenshots/03a-auth-ok.png",
+      "sha256": "e7893e2ce0831092ad40bca48060a83abfce9fc5b257d549bb86d885bd8d32b3",
+      "bytes": 9164
+    },
+    {
+      "path": "screenshots/03b-registry.png",
+      "sha256": "03dfad0f999e866f70fd4a375b994a1704ca907d12c043c3c561742f1b242489",
+      "bytes": 40688
+    },
+    {
+      "path": "screenshots/03c-versioning.png",
+      "sha256": "828b9469dea2e436089b64e73d5cafc00d504736cde18253a068773aaf955273",
+      "bytes": 38218
+    },
+    {
+      "path": "screenshots/04-adk-current.png",
+      "sha256": "153333ee9930683b75fe6128baf22bcdfb6d5b1ab0d4487adbdfbc3b416473f0",
+      "bytes": 105110
+    },
+    {
+      "path": "screenshots/04-adk-forecast.png",
+      "sha256": "ef23ed080854e53040062786e159ed37fda9a4bd7c7e289af64b76a1e17a18da",
+      "bytes": 81424
+    },
+    {
+      "path": "screenshots/04-adk-provider-503.png",
+      "sha256": "956fa9bdc1851140ad211d39c8618660713b6fcf478640bbeb8ca94c9ca4ccba",
+      "bytes": 94149
+    },
+    {
+      "path": "screenshots/04-adk-tool-response.png",
+      "sha256": "95c677dd03c3793362490bed77bccecf7e46405b8f9ce9916e06c7f04c0b5de3",
+      "bytes": 95110
+    },
+    {
+      "path": "screenshots/04-adk-weather-success.png",
+      "sha256": "c7eabe2e0e91d7fcffc9491c7691b22dc0d83115497bba2731e6e3c0b14337e6",
+      "bytes": 76459
+    },
+    {
+      "path": "screenshots/04-mcp-server-8085.png",
+      "sha256": "c0cd3f3bc38ab7b2e981ff8ffc1155da373f9550902df1e8c51d608679995df3",
+      "bytes": 16063
+    },
+    {
+      "path": "screenshots/04-verify-setup.png",
+      "sha256": "c98cf37fc34e8c1d0a96a2593b18e3290504686f69c5b7b5e838b5561228f950",
+      "bytes": 12654
+    }
+  ],
+  "git_diff_check": "passed",
+  "passed": true,
+  "full_codelab_evidence_complete": false,
+  "step01_codelab": {
+    "execution_checkpoint": "passed",
+    "review": "reports/evidence/step01_review.json",
+    "screenshot_required_name": "screenshots/01-function-calling.png",
+    "screenshot_type": "saved_stdout_browser_capture",
+    "native_terminal_screenshot": "missing"
+  },
+  "step02_codelab": {
+    "execution_checkpoint": "passed",
+    "evidence": "reports/evidence/mcp_stdio.json",
+    "screenshot_required_name": "screenshots/02-mcp-client.png",
+    "screenshot_type": "saved_stdout_browser_capture",
+    "native_terminal_screenshot": "missing"
+  },
+  "step04_server": {
+    "endpoint": "http://127.0.0.1:8085/mcp",
+    "evidence": "reports/evidence/step04_server_readiness.json",
+    "evidence_sha256": "e72021323b929a0acef5bf909bbbcd093fcd9cf6634c4f404cd3eaedec1bb3cb",
+    "server_kept_running_at_review": true,
+    "mcp_protocol": "passed",
+    "adk_discovery": "passed",
+    "tools": [
+      "get_current_weather",
+      "get_forecast",
+      "health_check"
+    ],
+    "health": {
+      "status": "ok",
+      "weather_api_configured": true,
+      "weather_api_verified": false
+    },
+    "dependency_sync_locked": "passed",
+    "pip_check": "passed",
+    "api_calls_in_this_readiness_check": false,
+    "previous_live_weather_evidence": "reports/evidence/live_setup.json",
+    "previous_live_execution_utc": "2026-10-14T09:35:12.383147+00:00",
+    "screenshot_required_in_step04": false,
+    "execution_checkpoint": "passed"
+  },
+  "tests_rerun_in_this_review": false,
+  "step05_agent": {
+    "verify_setup_evidence": "reports/evidence/step05_verify_setup.json",
+    "current_browser_evidence": "reports/evidence/adk_web_chat.json",
+    "forecast_browser_evidence": "reports/evidence/adk_web_forecast.json",
+    "current_execution_reused_existing_session": true,
+    "forecast_new_browser_session": "fef25deb-642e-4cf8-bdfd-69d5bae0cf5c",
+    "raw_forecast_sse_matches_parsed_events": true,
+    "forecast_checks": {
+      "requested_forecast_three_days": true,
+      "call_response_ids_aligned": true,
+      "tool_response_succeeded": true,
+      "three_forecast_days": true,
+      "final_answer_present": true,
+      "final_numbers_match_tool": true
+    },
+    "verify_protocol_and_discovery": true,
+    "current_execution_checkpoint": "passed",
+    "forecast_execution_checkpoint": "passed",
+    "screenshot_required_names": [
+      "screenshots/04-verify-setup.png",
+      "screenshots/04-adk-current.png",
+      "screenshots/04-adk-forecast.png"
+    ],
+    "screenshot_type": {
+      "04-verify-setup.png": "saved_stdout_browser_capture",
+      "04-adk-current.png": "actual_ADK_browser_current_session",
+      "04-adk-forecast.png": "actual_ADK_browser_forecast_session"
+    },
+    "screenshots_visually_reviewed": true,
+    "verify_native_terminal_screenshot": "missing",
+    "provider": {
+      "provider": "yescale",
+      "adapter": "google.adk.models.lite_llm.LiteLlm",
+      "endpoint_protocol": "openai-compatible",
+      "requested_model": "gemini-2.5-flash"
+    },
+    "response_models": [
+      "gemini-2.5-flash"
+    ],
+    "tests_rerun": false,
+    "test_reason": "No executable source changes since the 35-test checker run.",
+    "execution_checkpoint": "passed"
+  },
+  "servers_kept_running": {
+    "8085": true,
+    "8001": true
+  },
+  "publication_status_at_review": "ready_for_commit_and_push_to_main",
+  "optional_cloud_run": {
+    "required": false,
+    "status": "skipped_at_user_request",
+    "deployment_created": false,
+    "cloud_screenshot_created": false,
+    "local_docker_build_evidence": "reports/evidence/container_preparation.json",
+    "container_runtime_tested": false
+  },
+  "git_index_review": {
+    "source_hash_comparisons": 114,
+    "source_hash_mismatches": [],
+    "index_worktree_source_bytes_match": true,
+    "known_credential_scan": "passed",
+    "env_files_ignored": true,
+    "gitattributes_preserves_exact_bytes": true
+  }
+}

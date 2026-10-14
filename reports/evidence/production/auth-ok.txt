@@ -1,0 +1,6 @@
+﻿Endpoint: http://127.0.0.1:8002/mcp
+
+Tools (có auth):
+  - get_weather: Lấy thời tiết hiện tại của một thành phố.
+
+Kết quả: Hanoi: 29°C, trời mưa

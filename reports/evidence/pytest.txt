@@ -1,0 +1,22 @@
+...................................                                      [100%]
+============================== warnings summary ===============================
+tests/test_gemini_gateway.py::test_adk_gemini_gateway_uses_yescale_key_without_google_key
+  D:\Python\K4-DAY26-TranQuocVuong-2A202602522\04-lab\mcp-client\.venv\Lib\site-packages\google\adk\features\_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.
+    check_feature_enabled()
+
+tests/test_mcp_integration.py::test_adk_performs_actual_discovery
+  D:\Python\K4-DAY26-TranQuocVuong-2A202602522\04-lab\mcp-client\.venv\Lib\site-packages\google\adk\tools\mcp_tool\mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.
+    session = await self._mcp_session_manager.create_session(
+
+tests/test_mcp_integration.py::test_adk_performs_actual_discovery
+tests/test_mcp_integration.py::test_adk_performs_actual_discovery
+tests/test_mcp_integration.py::test_adk_performs_actual_discovery
+  D:\Python\K4-DAY26-TranQuocVuong-2A202602522\04-lab\mcp-client\.venv\Lib\site-packages\google\adk\tools\mcp_tool\mcp_toolset.py:538: DeprecationWarning: MCPTool class is deprecated, use `McpTool` instead.
+    mcp_tool = MCPTool(
+
+tests/test_mcp_integration.py::test_adk_performs_actual_discovery
+  D:\Python\K4-DAY26-TranQuocVuong-2A202602522\04-lab\mcp-client\.venv\Lib\site-packages\google\adk\features\_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.
+    check_feature_enabled()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+35 passed, 6 warnings in 44.92s

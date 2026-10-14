@@ -14,10 +14,26 @@ weather_client.py                       weather_server.py
 
 ## Cách chạy (không cần API key)
 
+Từ **gốc repo**, trên Windows dùng virtualenv đã cài ở bước chuẩn bị:
+
+```powershell
+.\.venv\Scripts\python.exe -X utf8 02-mcp-basics/weather_client.py --output reports/evidence/mcp_stdio.json
+```
+
+Linux/macOS: dùng `.venv/bin/python` thay cho `.venv\Scripts\python.exe`. Hoặc dùng môi trường uv của Lab 04 từ gốc repo:
+
 ```bash
-pip install -r ../requirements.txt
+uv run --project 04-lab/mcp-client python 02-mcp-basics/weather_client.py --output reports/evidence/mcp_stdio.json
+```
+
+Nếu terminal đã kích hoạt `.venv`, lệnh của codelab là:
+
+```bash
+cd 02-mcp-basics
 python weather_client.py     # client tự khởi động weather_server.py
 ```
+
+Client truyền `sys.executable` và đường dẫn tuyệt đối tới server, nên dùng cùng interpreter và không phụ thuộc thư mục terminal. Server là tiến trình con của client; không cần mở terminal riêng hoặc cấu hình key/model.
 
 Kết quả mong đợi:
 
@@ -34,6 +50,31 @@ call_tool get_weather(city='Danang'):
 call_tool get_weather(city='Haiphong'):
   -> Haiphong: 33°C, mưa rào
 ```
+
+### Discovery và nơi thực thi
+
+| Phần | Source | Điều quan sát |
+|---|---|---|
+| Khai báo server | `MCPServer("weather")`, `@mcp.tool()` trong weather_server.py | SDK sinh metadata/schema từ signature/docstring |
+| Kết nối | `stdio_client` và `ClientSession` trong weather_client.py | Initialize trước list_tools; client tự quản lý server con |
+| Khám phá | `session.list_tools()` | Tên, mô tả và input_schema do server gửi về |
+| Chọn tool demo | `select_weather_tool()` | Chọn đúng một tool có city:string bắt buộc; lấy tên từ metadata, báo lỗi nếu thiếu/không rõ ràng |
+| Thực thi | `session.call_tool(weather_tool.name, {"city": city})` | Hàm Python chạy ở server; client nhận chuỗi kết quả |
+
+Demo vẫn biết tham số **city** và ba giá trị Hanoi/Danang/Haiphong. Discovery không tự chọn ý định hoặc tự điền tham số như một model. Tên hàm dùng cho call_tool được lấy từ tool vừa khám phá, không dùng một tên cố định để gọi bất chấp metadata. Nếu server có nhiều tool cùng schema city, demo báo ambiguity; chưa phải một registry/agent tổng quát.
+
+**MCP không yêu cầu Function Calling hoặc LLM.** Trong bước 2 không có model. Khi ghép thành agent ở bước 4, client đưa tools đã khám phá cho model qua API Function Calling; model chọn tool, client gọi MCP, server thực thi. Phần schema/hàm viết tay trong app bước 1 được chuyển sang server; vòng điều phối model ở bước 4 vẫn cần app/ADK.
+
+### Checkpoint và evidence
+
+- [x] Initialize + list_tools + ba call_tool qua stdio thật, không dùng API key.
+- [x] Mô tả tool khớp docstring của get_weather; input_schema có city:string bắt buộc.
+- [x] Hanoi 29°C/trời mưa, Danang 30°C/nhiều mây, Haiphong 33°C/mưa rào; cả ba không có MCP tool error.
+- [x] [mcp_stdio.json](../reports/evidence/mcp_stdio.json) lưu metadata/schema, ba arguments/results, timestamp và source hashes; [stdout](../reports/evidence/weather_client.txt) lưu output.
+- [x] Có [02-mcp-client.png](../screenshots/02-mcp-client.png) đúng tên codelab, chụp stdout thật đang xem trong trình duyệt.
+- [ ] Ảnh cửa sổ terminal gốc: công cụ hiện tại chỉ chụp được trình duyệt. Khi chụp terminal, cần đủ dòng Tools server cung cấp và ba call_tool; ghi đè đúng ảnh trên bằng ảnh terminal thực.
+
+Regression checks nằm trong [test_mcp_basics.py](../tests/test_mcp_basics.py): một phép thử SDK/process thật đối chiếu description/schema/ba kết quả, và một phép thử tên remote thay đổi + missing/ambiguous discovery. Weather của bước này là mock theo starter, không phải WeatherAPI.
 
 ## Files
 

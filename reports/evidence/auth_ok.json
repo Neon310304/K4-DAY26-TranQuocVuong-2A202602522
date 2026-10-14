@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "server": "weather-secure",
+  "tools": [
+    "get_weather"
+  ],
+  "is_error": false,
+  "result": "Hanoi: 29°C, trời mưa",
+  "http_statuses": [
+    200,
+    202,
+    200,
+    200,
+    200,
+    200
+  ],
+  "timestamp_utc": "2026-10-14T10:14:35.109978+00:00",
+  "scope": "actual_mcp_http_bearer_demo_with_mock_weather",
+  "url": "http://127.0.0.1:8002/mcp",
+  "source_hashes": {
+    "03-production/auth_client.py": "8aeda4502f77808a368ede85e8471aac58522f479be389a893eb75692f7fb7bd",
+    "03-production/auth_server.py": "8a7acc5ebd0bf39fd1a186d819f1023a7f48f085c0297e33d81f2e20ff1a875d"
+  }
+}

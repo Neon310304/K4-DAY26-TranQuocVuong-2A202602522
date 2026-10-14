@@ -11,10 +11,17 @@ Cách chạy:
 
 from google import genai
 from google.genai import types
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+import argparse
+import hashlib
+import json
+from datetime import datetime, timezone
 
-client = genai.Client()
+load_dotenv(Path(__file__).resolve().parents[1] / ".env", override=False)
 
-MODEL = "gemini-2.5-flash"
+MODEL = os.getenv("GOOGLE_MODEL", "gemini-2.5-flash")
 
 SYSTEM_INSTRUCTION = (
     "Bạn là trợ lý thời tiết thân thiện, trả lời bằng tiếng Việt tự nhiên. "
@@ -70,54 +77,58 @@ def get_weather(city: str) -> str:
     return json.dumps({"city": city, **mock_data.get(city, default)}, ensure_ascii=False)
 
 
-def run(prompt: str) -> str:
-    """Gửi *prompt* tới Gemini, tự động xử lý function calling và trả về câu trả lời cuối."""
-    contents: list[types.Content] = [
-        types.Content(role="user", parts=[types.Part.from_text(text=prompt)])
-    ]
-
-    # 3. Gọi model — model quyết định có gọi tool hay không
-    resp = client.models.generate_content(
-        model=MODEL,
-        contents=contents,
-        config=types.GenerateContentConfig(
-            tools=TOOLS,
-            system_instruction=SYSTEM_INSTRUCTION,
-        ),
+def run(prompt: str, trace: dict | None = None) -> str:
+    """Model chọn tool; app thực thi. GEMINI_BASE_URL hỗ trợ gateway như YesScale."""
+    key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+    base_url = os.getenv("GEMINI_BASE_URL") or None
+    options = types.HttpOptions(base_url=base_url, timeout=60000)
+    config = types.GenerateContentConfig(
+        tools=TOOLS, system_instruction=SYSTEM_INSTRUCTION + " Dữ liệu tool là mock của lab; ghi rõ khi trả lời.",
+        automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=True),
     )
-
-    # 4. Vòng lặp: nếu model yêu cầu tool, app TỰ THỰC THI rồi đưa kết quả trả lại
-    while resp.function_calls:
-        # Thêm phản hồi của model vào lịch sử hội thoại
-        contents.append(resp.candidates[0].content)
-
-        function_responses = []
-        for fc in resp.function_calls:
-            print(f"  [model yêu cầu] {fc.name}({fc.args})")
-            result = get_weather(**fc.args)  # <-- app chạy, không phải model
-            print(f"  [app thực thi]  -> {result}")
-            function_responses.append(
-                types.Part.from_function_response(
-                    name=fc.name, response={"result": result}
-                )
-            )
-
-        # Gửi kết quả tool trả về cho model
-        contents.append(types.Content(role="user", parts=function_responses))
-        resp = client.models.generate_content(
-            model=MODEL,
-            contents=contents,
-            config=types.GenerateContentConfig(
-                tools=TOOLS,
-                system_instruction=SYSTEM_INSTRUCTION,
-            ),
-        )
-
-    # 5. Model tổng hợp câu trả lời cuối
-    return resp.text
+    contents = [types.Content(role="user", parts=[types.Part.from_text(text=prompt)])]
+    calls = []
+    with genai.Client(api_key=key, http_options=options) as client:
+        for _ in range(4):
+            resp = client.models.generate_content(model=MODEL, contents=contents, config=config)
+            if not resp.function_calls:
+                if not calls or not resp.text:
+                    raise RuntimeError("Gemini did not complete a function-call round trip")
+                if trace is not None:
+                    trace.update({"format_version": 1, "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+                                  "status": "passed", "scope": "live_google_genai_manual_function_calling_with_mock_weather",
+                                  "gateway": "yescale" if base_url and "yescale" in base_url else "configured_or_google_default",
+                                  "request_model": MODEL, "response_model": resp.model_version,
+                                  "tool_calls": calls, "final_response": resp.text,
+                                  "source_hashes": {"01-function-calling/weather_function_calling.py":
+                                      hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}})
+                return resp.text
+            contents.append(resp.candidates[0].content)
+            function_responses = []
+            for fc in resp.function_calls:
+                if fc.name != "get_weather":
+                    raise ValueError("Unknown function requested by Gemini")
+                print(f"  [model yêu cầu] {fc.name}({fc.args})")
+                result = get_weather(**fc.args)  # APP thực thi tool ngay tại đây.
+                print(f"  [app thực thi]  -> {result}")
+                calls.append({"name": fc.name, "arguments": dict(fc.args), "result": json.loads(result)})
+                function_responses.append(types.Part.from_function_response(name=fc.name, response={"result": result}))
+            contents.append(types.Content(role="user", parts=function_responses))
+    raise RuntimeError("Gemini function-call round limit exceeded")
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path, help="Save evidence without credentials.")
+    args = parser.parse_args()
     question = "Thời tiết Hà Nội và Đà Nẵng hôm nay thế nào?"
     print(f"User: {question}\n")
-    print("Trả lời:", run(question))
+    trace = {}
+    try:
+        print("Trả lời:", run(question, trace))
+    except Exception as error:
+        print("Function calling failed:", type(error).__name__)
+        raise SystemExit(1)
+    if args.output:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(trace, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

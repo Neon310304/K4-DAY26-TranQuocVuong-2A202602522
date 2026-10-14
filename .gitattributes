@@ -1,0 +1,7 @@
+# Evidence uses SHA-256 of exact source and output bytes.
+# Preserve those bytes across Windows/Linux checkouts instead of converting EOLs.
+* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+*.png binary
+# Captured stdout/SSE retains provider spacing and protocol blank lines.
+reports/evidence/*.txt -whitespace
+reports/evidence/**/*.txt -whitespace

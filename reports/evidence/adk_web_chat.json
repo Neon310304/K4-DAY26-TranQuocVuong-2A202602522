@@ -1,0 +1,169 @@
+{
+  "format_version": 1,
+  "timestamp_utc": "2026-10-14T09:44:53.242436+00:00",
+  "status": "passed",
+  "scope": "actual_browser_adk_chat_with_live_gemini_and_weatherapi",
+  "url": "http://127.0.0.1:8001/dev-ui/",
+  "mcp_url": "http://127.0.0.1:8085/mcp",
+  "session_id": "b2f26b2e-4a88-4fce-b952-46d1729d2460",
+  "configuration": {
+    "provider": "yescale",
+    "adapter": "google.adk.models.lite_llm.LiteLlm",
+    "endpoint_protocol": "openai-compatible",
+    "requested_model": "gemini-2.5-flash"
+  },
+  "response_models": [
+    "gemini-2.5-flash"
+  ],
+  "function_calls": [
+    {
+      "id": "call_aa28bce11ae34a5f89fc872f3b9e987a",
+      "args": {
+        "city": "Hanoi"
+      },
+      "name": "get_current_weather"
+    }
+  ],
+  "function_responses": [
+    {
+      "id": "call_aa28bce11ae34a5f89fc872f3b9e987a",
+      "name": "get_current_weather",
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Current Weather for Hanoi, , Vietnam:\nTemperature: 33.9°C (93.1°F)\nFeels like: 35.9°C (96.6°F)\nCondition: Smoky haze\nHumidity: 42%\nWind: 9.0 km/h (5.6 mph) SSE\nPressure: 1011.0 mb\nUV Index: 1.0\nVisibility: 10.0 km\nLast updated: 2026-10-14 16:30"
+          }
+        ],
+        "structuredContent": {
+          "result": "Current Weather for Hanoi, , Vietnam:\nTemperature: 33.9°C (93.1°F)\nFeels like: 35.9°C (96.6°F)\nCondition: Smoky haze\nHumidity: 42%\nWind: 9.0 km/h (5.6 mph) SSE\nPressure: 1011.0 mb\nUV Index: 1.0\nVisibility: 10.0 km\nLast updated: 2026-10-14 16:30"
+        },
+        "isError": false
+      }
+    }
+  ],
+  "final_response": "Thời tiết hiện tại ở Hà Nội:\n- **Nhiệt độ:** 33.9°C (cảm giác như 35.9°C)\n- **Tình trạng:** Khói mù (Smoky haze)\n- **Độ ẩm:** 42%\n- **Gió:** 9.0 km/h hướng Đông Nam (SSE)\n- **Áp suất:** 1011.0 mb\n- **Chỉ số UV:** 1.0\n- **Tầm nhìn:** 10.0 km\n\n**Thời điểm cập nhật:** 2026-10-14 16:30",
+  "events": [
+    {
+      "modelVersion": "gemini-2.5-flash",
+      "content": {
+        "parts": [
+          {
+            "functionCall": {
+              "id": "call_aa28bce11ae34a5f89fc872f3b9e987a",
+              "args": {
+                "city": "Hanoi"
+              },
+              "name": "get_current_weather"
+            }
+          }
+        ],
+        "role": "model"
+      },
+      "partial": false,
+      "finishReason": "STOP",
+      "usageMetadata": {
+        "cachedContentTokenCount": 0,
+        "candidatesTokenCount": 19,
+        "promptTokenCount": 659,
+        "totalTokenCount": 678
+      },
+      "invocationId": "e-33b02d30-794d-4513-a845-29dd4f4673a7",
+      "author": "weather_agent",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "nodeInfo": {
+        "path": "weather_agent@1"
+      },
+      "longRunningToolIds": [],
+      "id": "489406db-f65f-42d2-b9a3-38ebbec9a231",
+      "timestamp": 1791970932.3175514
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "functionResponse": {
+              "id": "call_aa28bce11ae34a5f89fc872f3b9e987a",
+              "name": "get_current_weather",
+              "response": {
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Current Weather for Hanoi, , Vietnam:\nTemperature: 33.9°C (93.1°F)\nFeels like: 35.9°C (96.6°F)\nCondition: Smoky haze\nHumidity: 42%\nWind: 9.0 km/h (5.6 mph) SSE\nPressure: 1011.0 mb\nUV Index: 1.0\nVisibility: 10.0 km\nLast updated: 2026-10-14 16:30"
+                  }
+                ],
+                "structuredContent": {
+                  "result": "Current Weather for Hanoi, , Vietnam:\nTemperature: 33.9°C (93.1°F)\nFeels like: 35.9°C (96.6°F)\nCondition: Smoky haze\nHumidity: 42%\nWind: 9.0 km/h (5.6 mph) SSE\nPressure: 1011.0 mb\nUV Index: 1.0\nVisibility: 10.0 km\nLast updated: 2026-10-14 16:30"
+                },
+                "isError": false
+              }
+            }
+          }
+        ],
+        "role": "user"
+      },
+      "invocationId": "e-33b02d30-794d-4513-a845-29dd4f4673a7",
+      "author": "weather_agent",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "nodeInfo": {
+        "path": "weather_agent@1"
+      },
+      "id": "5bc962b0-7725-49da-9041-6664dd25ccb7",
+      "timestamp": 1791970946.4617822
+    },
+    {
+      "modelVersion": "gemini-2.5-flash",
+      "content": {
+        "parts": [
+          {
+            "text": "Thời tiết hiện tại ở Hà Nội:\n- **Nhiệt độ:** 33.9°C (cảm giác như 35.9°C)\n- **Tình trạng:** Khói mù (Smoky haze)\n- **Độ ẩm:** 42%\n- **Gió:** 9.0 km/h hướng Đông Nam (SSE)\n- **Áp suất:** 1011.0 mb\n- **Chỉ số UV:** 1.0\n- **Tầm nhìn:** 10.0 km\n\n**Thời điểm cập nhật:** 2026-10-14 16:30"
+          }
+        ],
+        "role": "model"
+      },
+      "partial": false,
+      "finishReason": "STOP",
+      "usageMetadata": {
+        "cachedContentTokenCount": 0,
+        "candidatesTokenCount": 145,
+        "promptTokenCount": 995,
+        "totalTokenCount": 1140
+      },
+      "invocationId": "e-33b02d30-794d-4513-a845-29dd4f4673a7",
+      "author": "weather_agent",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "nodeInfo": {
+        "path": "weather_agent@1"
+      },
+      "id": "07ec6598-3244-4252-a150-c501bc8edc3d",
+      "timestamp": 1791970946.479235
+    }
+  ],
+  "source_hashes": {
+    "04-lab/mcp-client/weather_agent/agent.py": "2fb3fdaf7575e8a1084aa8852e56b1074f01cdd3ac1b793ffa08349582459f55",
+    "04-lab/mcp-client/weather_agent/gemini_gateway.py": "5490cd298491bded60ff33b32393ebbb7680c8749559f239dfd7def2c04e440b",
+    "04-lab/mcp-server/weather.py": "1e6f4cdfc35703f1f81c7744458c5043a43dc91b61f30b7743b09e5585b9b220",
+    "04-lab/mcp-client/uv.lock": "fc6059486a6031697571ee133343576b4cd20bc937b3183b8ca4361d0a828f23"
+  },
+  "prior_native_gateway_web_failures": {
+    "status": "failed",
+    "http_status": 503,
+    "note": "Native Gemini via YesScale passed Runner, but web attempts failed after tool response. One nonstream web attempt returned plain call marker without executing a tool. No claim that disabling streaming fixed the provider issue.",
+    "screenshot": "screenshots/04-adk-provider-503.png"
+  }
+}

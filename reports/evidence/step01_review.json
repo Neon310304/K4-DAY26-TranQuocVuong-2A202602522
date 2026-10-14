@@ -1,0 +1,20 @@
+{
+  "timestamp_utc": "2026-10-14T09:57:21.717878+00:00",
+  "scope": "step01_existing_execution_evidence_review_no_api_rerun",
+  "checks": {
+    "source_hash_matches": true,
+    "native_gemini_api_passed": true,
+    "model_requests": 2,
+    "app_executions": 2,
+    "final_response_present": true,
+    "correct_screenshot_name": true,
+    "screenshot_alias_identical": true
+  },
+  "code_and_execution_checkpoint": "passed",
+  "screenshot_type": "saved_stdout_browser_capture",
+  "native_terminal_screenshot": "missing",
+  "full_codelab_evidence_complete": false,
+  "source_hashes": {
+    "01-function-calling/weather_function_calling.py": "9384e387581ca8cecf0628b2e8c340d381f8bba4e4cd137c9450964c35158755"
+  }
+}

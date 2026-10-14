@@ -22,11 +22,14 @@ Cách chạy:
 
 from __future__ import annotations
 
+import argparse
 import asyncio
+import hashlib
 import json
 import os
 import sys
 from pathlib import Path
+from datetime import datetime, timezone
 
 from packaging.version import Version
 
@@ -44,7 +47,7 @@ class ToolRegistry:
     """Danh mục trung tâm — agent tra cứu tool theo tag, tên, hoặc mô tả."""
 
     def __init__(self, path: Path = REGISTRY_PATH) -> None:
-        with open(path) as f:
+        with open(path, encoding="utf-8") as f:
             data = json.load(f)
         self.tools: dict[str, dict] = data["tools"]
         self.servers: dict[str, dict] = data["servers"]
@@ -104,6 +107,8 @@ async def connect_and_call(match: dict, tool_args: dict) -> str:
             async with ClientSession(read, write) as session:
                 await session.initialize()
                 result = await session.call_tool(tool_name, tool_args)
+                if result.is_error:
+                    raise RuntimeError("Registry-selected MCP tool returned an error")
                 return result.content[0].text
 
     elif server.get("transport") == "streamable-http":
@@ -120,12 +125,14 @@ async def connect_and_call(match: dict, tool_args: dict) -> str:
                 async with ClientSession(read, write) as session:
                     await session.initialize()
                     result = await session.call_tool(tool_name, tool_args)
+                    if result.is_error:
+                        raise RuntimeError("Registry-selected MCP tool returned an error")
                     return result.content[0].text
 
     raise ValueError(f"Transport không được hỗ trợ: {server.get('transport')}")
 
 
-async def main() -> None:
+async def main() -> dict:
     registry = ToolRegistry()
 
     # ── 1. Agent liệt kê toàn bộ tool trong registry ─────────────────
@@ -158,6 +165,21 @@ async def main() -> None:
     for r in results:
         print(f"  • {r['tool']}: {r['description']}")
 
+    root = Path(__file__).resolve().parents[1]
+    sources = ["03-production/registry_client.py", "03-production/registry.json",
+               "03-production/versioned_server.py"]
+    return {"timestamp_utc": datetime.now(timezone.utc).isoformat(), "status": "passed",
+            "scope": "actual_registry_python_selection_and_mcp_call_no_llm",
+            "weather_matches": registry.search(tag="weather"), "best_match": best,
+            "tool_arguments": {"city": "Hanoi"}, "result": json.loads(output),
+            "source_hashes": {name: hashlib.sha256((root / name).read_bytes()).hexdigest() for name in sources}}
+
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path)
+    args = parser.parse_args()
+    report = asyncio.run(main())
+    if args.output:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

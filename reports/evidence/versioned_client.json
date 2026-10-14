@@ -1,0 +1,103 @@
+{
+  "timestamp_utc": "2026-10-14T10:14:48.874255+00:00",
+  "status": "passed",
+  "scope": "actual_mcp_stdio_v1_v2_defaults_and_metadata_no_llm",
+  "metadata": {
+    "name": "weather-v2",
+    "version": "2.0.0",
+    "deprecated_tools": [
+      "get_weather"
+    ],
+    "migration_guide": "Chuyển từ get_weather sang get_weather_v2. Tham số 'city' giữ nguyên, thêm include_forecast và units."
+  },
+  "tools": [
+    {
+      "name": "get_weather",
+      "input_schema": {
+        "properties": {
+          "city": {
+            "title": "City",
+            "type": "string"
+          }
+        },
+        "required": [
+          "city"
+        ],
+        "type": "object",
+        "title": "get_weatherArguments"
+      }
+    },
+    {
+      "name": "get_weather_v2",
+      "input_schema": {
+        "properties": {
+          "city": {
+            "title": "City",
+            "type": "string"
+          },
+          "include_forecast": {
+            "default": false,
+            "title": "Include Forecast",
+            "type": "boolean"
+          },
+          "units": {
+            "default": "celsius",
+            "title": "Units",
+            "type": "string"
+          }
+        },
+        "required": [
+          "city"
+        ],
+        "type": "object",
+        "title": "get_weather_v2Arguments"
+      }
+    }
+  ],
+  "v1": {
+    "is_error": false,
+    "result": "Hanoi: 29°C, trời mưa"
+  },
+  "v2_forecast": {
+    "is_error": false,
+    "result": {
+      "api_version": "2.0",
+      "city": "Hanoi",
+      "temp": 29,
+      "units": "celsius",
+      "condition": "trời mưa",
+      "humidity": 82,
+      "wind_speed_kmh": 12,
+      "timestamp": "2026-10-14T10:14:48.711857+00:00",
+      "forecast": [
+        {
+          "day": "tomorrow",
+          "temp": 27,
+          "condition": "mưa nhẹ"
+        },
+        {
+          "day": "day_after",
+          "temp": 31,
+          "condition": "nắng"
+        }
+      ]
+    }
+  },
+  "v2_defaults": {
+    "is_error": false,
+    "result": {
+      "api_version": "2.0",
+      "city": "Hanoi",
+      "temp": 29,
+      "units": "celsius",
+      "condition": "trời mưa",
+      "humidity": 82,
+      "wind_speed_kmh": 12,
+      "timestamp": "2026-10-14T10:14:48.719075+00:00"
+    }
+  },
+  "source_hashes": {
+    "03-production/versioned_client.py": "5282240155994cde004eb5d5d9f0772eecfa897a657d812730ca81fb1a8b2b67",
+    "03-production/versioned_server.py": "782a8469d9f853d0179b1da54a8c3a24edb0af388ea4dadde52e1b42b1901eca"
+  }
+}

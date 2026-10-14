@@ -1,0 +1,69 @@
+{
+  "timestamp_utc": "2026-10-14T10:00:47.284871+00:00",
+  "status": "passed",
+  "scope": "actual_mcp_stdio_discovery_and_three_mock_weather_calls_no_llm",
+  "server": "weather",
+  "protocol_version": "2025-11-25",
+  "tools": [
+    {
+      "name": "get_weather",
+      "description": "Lấy thời tiết hiện tại của một thành phố.",
+      "input_schema": {
+        "properties": {
+          "city": {
+            "title": "City",
+            "type": "string"
+          }
+        },
+        "required": [
+          "city"
+        ],
+        "type": "object",
+        "title": "get_weatherArguments"
+      },
+      "output_schema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "type": "object",
+        "title": "get_weatherOutput"
+      }
+    }
+  ],
+  "calls": [
+    {
+      "tool": "get_weather",
+      "arguments": {
+        "city": "Hanoi"
+      },
+      "is_error": false,
+      "text": "Hanoi: 29°C, trời mưa"
+    },
+    {
+      "tool": "get_weather",
+      "arguments": {
+        "city": "Danang"
+      },
+      "is_error": false,
+      "text": "Danang: 30°C, nhiều mây"
+    },
+    {
+      "tool": "get_weather",
+      "arguments": {
+        "city": "Haiphong"
+      },
+      "is_error": false,
+      "text": "Haiphong: 33°C, mưa rào"
+    }
+  ],
+  "source_hashes": {
+    "02-mcp-basics/weather_client.py": "3b30b3ba38553b4f983d4c65fdce52e0f5311aae7a52a30dd2bf35cddbcb4eda",
+    "02-mcp-basics/weather_server.py": "5dbb6eb15bc072f6a06c824072cc5d4640aabd4be7046cb7ac50256060abd21d"
+  }
+}

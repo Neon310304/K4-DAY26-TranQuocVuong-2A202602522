@@ -1,0 +1,12 @@
+{
+  "timestamp_utc": "2026-10-14T09:15:29.665835+00:00",
+  "status": "passed",
+  "scope": "local_adk_web_http_readiness_only",
+  "list_apps_http_status": 200,
+  "apps": [
+    "weather_agent"
+  ],
+  "homepage_http_status": 200,
+  "browser_chat_tested": false,
+  "llm_calls": 0
+}

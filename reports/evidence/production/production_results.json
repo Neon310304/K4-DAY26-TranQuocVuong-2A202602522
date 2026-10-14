@@ -1,0 +1,35 @@
+{
+  "timestamp_utc": "2026-10-14T10:17:59.477699+00:00",
+  "scope": "three_actual_local_production_demos_mock_weather_no_llm",
+  "auth_url": "http://127.0.0.1:8002/mcp",
+  "auth_server_pid": 1964,
+  "auth_server_exit_code": 1,
+  "auth_server_stopped": true,
+  "missing_token_http_status": 401,
+  "invalid_token_http_statuses": [
+    401
+  ],
+  "checks": {
+    "authorized_initialize_list_and_call": true,
+    "invalid_token_rejected": true,
+    "missing_token_rejected": true,
+    "auth_server_stopped": true,
+    "registry_two_weather_matches": true,
+    "registry_active_v2_selected": true,
+    "version_metadata": true,
+    "legacy_v1_works": true,
+    "v2_forecast_works": true,
+    "v2_optional_defaults_work": true
+  },
+  "passed": true,
+  "native_terminal_screenshots_captured": false,
+  "source_hashes": {
+    "03-production/auth_server.py": "8a7acc5ebd0bf39fd1a186d819f1023a7f48f085c0297e33d81f2e20ff1a875d",
+    "03-production/auth_client.py": "8aeda4502f77808a368ede85e8471aac58522f479be389a893eb75692f7fb7bd",
+    "03-production/registry_client.py": "10359759c6a160b9b7d8edbd1b67137b073e81eea7f575a4aadfce9e69bcea77",
+    "03-production/registry.json": "78bb8aaa298fe60beebbf971472d73d004d861b5430ba21dafdac68fb8a81496",
+    "03-production/versioned_client.py": "5282240155994cde004eb5d5d9f0772eecfa897a657d812730ca81fb1a8b2b67",
+    "03-production/versioned_server.py": "782a8469d9f853d0179b1da54a8c3a24edb0af388ea4dadde52e1b42b1901eca",
+    "scripts/run_production.py": "a22ac54dd551a98e9d3eb4ee4f177660f76fdf291abcb6e5ea9e5255b4406c14"
+  }
+}

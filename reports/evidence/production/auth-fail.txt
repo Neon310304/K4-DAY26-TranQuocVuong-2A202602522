@@ -1,0 +1,11 @@
+﻿Endpoint: http://127.0.0.1:8002/mcp
+
+Authentication/transport failed: HTTP 401
+
+Server access log (actual POST requests):
+INFO:     127.0.0.1:49887 - "POST /mcp HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49888 - "POST /mcp HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:49890 - "POST /mcp HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49891 - "POST /mcp HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49896 - "POST /mcp HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49897 - "POST /mcp HTTP/1.1" 401 Unauthorized

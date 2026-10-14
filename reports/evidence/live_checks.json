@@ -1,0 +1,49 @@
+{
+  "format_version": 1,
+  "timestamp_utc": "2026-10-14T09:34:12.455837+00:00",
+  "python": "3.12.6",
+  "scope": "local_day26_checks",
+  "checks": {
+    "tests": {
+      "status": "passed",
+      "evidence": "reports/evidence/pytest.xml"
+    },
+    "weather_client.py": {
+      "status": "passed"
+    },
+    "versioned_client.py": {
+      "status": "passed"
+    },
+    "registry_client.py": {
+      "status": "passed"
+    },
+    "setup": {
+      "status": "passed",
+      "evidence": "reports/evidence/live_setup.json"
+    }
+  },
+  "source_hashes": {
+    "01-function-calling/weather_function_calling.py": "9384e387581ca8cecf0628b2e8c340d381f8bba4e4cd137c9450964c35158755",
+    "01-function-calling/weather_openai_compatible.py": "82d4c5d01fa4458eb4c3912227c15bcff5c4c479e59008cc2e08c47bcae565cf",
+    "02-mcp-basics/weather_client.py": "7847692df6887dfcea93673cdc6fb0d6add845bddd147aa35fd8d70209e0aef1",
+    "02-mcp-basics/weather_server.py": "5dbb6eb15bc072f6a06c824072cc5d4640aabd4be7046cb7ac50256060abd21d",
+    "03-production/auth_client.py": "4e9e26dc52996cc8fab07fe53d0919fbe32e138c41fc2eefce525dac4322c7f0",
+    "03-production/auth_server.py": "a2de7bbbaf5735d0f19474ddd581fed7e1dc426fac3935a242378819f108e372",
+    "03-production/registry_client.py": "f7fe84af0a3b7cbbb95fbc6f18dd536d9d8d06e18871cc0f0b212bbabf399da5",
+    "03-production/versioned_client.py": "e1b77e2d6b003cce90188f834d722ba1690129cc8b08da0c6f168f2b9d877788",
+    "03-production/versioned_server.py": "782a8469d9f853d0179b1da54a8c3a24edb0af388ea4dadde52e1b42b1901eca",
+    "04-lab/mcp-client/verify_setup.py": "44413766e55ffc36047cb36387e34c2a3cdd20a974cc7af345990f9e0b9a452a",
+    "04-lab/mcp-client/weather_agent/__init__.py": "5cd870936de9143db134b5949fccd422a5136f4575d7beaa569d2f992865cc00",
+    "04-lab/mcp-client/weather_agent/agent.py": "2fb3fdaf7575e8a1084aa8852e56b1074f01cdd3ac1b793ffa08349582459f55",
+    "04-lab/mcp-client/weather_agent/gemini_gateway.py": "5490cd298491bded60ff33b32393ebbb7680c8749559f239dfd7def2c04e440b",
+    "04-lab/mcp-server/weather.py": "1e6f4cdfc35703f1f81c7744458c5043a43dc91b61f30b7743b09e5585b9b220",
+    "scripts/check_lab.py": "b8f2fdbbaf20ca17f7a7004d323c2cf548dd298da1a149811e397437d747b23c",
+    "scripts/lab_support.py": "a3661ed093d21e693ac6093e179b7d47d822a0c7f24b4dc73abe0adf454155d1",
+    "tests/conftest.py": "e51932c1ae92e2d37b7faca5af6ed0e1094058d0a09c2ad4c77b493ccbb5270b",
+    "tests/test_gemini_gateway.py": "0eea58b5d141a6b5700f5fc7df623a607ceaeb5809a7ba4ed0ef910d59efd39e",
+    "tests/test_manual_function_calling.py": "66c8a301e7be85d0345b168a9637d71f2157095fbc5a1356dc392d8b558c783b",
+    "tests/test_mcp_integration.py": "29f9b2d66aba06a8a82826028c50f350f9f4f7896a381b9083d2f1306c37785f",
+    "tests/test_weather.py": "517def909686c53dc4cb26e85d3a1893a6daddaec9ff9008945898daa7e6104f"
+  },
+  "passed": true
+}

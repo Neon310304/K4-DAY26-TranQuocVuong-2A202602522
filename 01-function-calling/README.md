@@ -15,6 +15,61 @@ User hỏi  →  Model quyết định gọi get_weather(city="Hà Nội")
 
 ## Cách chạy
 
+Các lệnh cũ bên dưới chạy trong thư mục phần 01. Từ **gốc repo**, dùng:
+
+```bash
+uv run --project 04-lab/mcp-client python 01-function-calling/weather_function_calling.py --output reports/evidence/function_calling_gemini.json
+```
+
+Gemini SDK đọc `GEMINI_API_KEY` hoặc `GOOGLE_API_KEY` trong `.env` ở gốc repo; dùng [.env.example](../.env.example). Model là API thật, dữ liệu của hàm weather là mock.
+
+**YesScale chạy được ngay bằng Google SDK:** đặt `GEMINI_API_KEY` bằng key YesScale, `GEMINI_BASE_URL=https://api.yescale.io`, `GOOGLE_MODEL=gemini-2.5-flash`. Để gọi Google trực tiếp, dùng Google key và để `GEMINI_BASE_URL` trống. Đã chạy native SDK thành công qua YesScale: [JSON](../reports/evidence/function_calling_gemini.json), [stdout](../reports/evidence/function_calling_gemini.txt), [ảnh](../screenshots/01-function-calling-gemini.png).
+
+Code tắt automatic function calling của SDK để nhìn rõ app tự chạy `get_weather`, gửi function response, rồi model tổng hợp. Vòng lặp tối đa bốn lượt và từ chối tên hàm ngoài whitelist.
+
+### Đối chiếu ba phần của codelab
+
+| Phần | Vị trí trong source hiện tại | Vai trò |
+|---|---|---|
+| Schema viết tay | `get_weather_declaration = types.FunctionDeclaration(...)` | Tool get_weather, city kiểu string và bắt buộc |
+| Hàm thực thi | `def get_weather(city: str) -> str` | JSON mock của Hà Nội, Hồ Chí Minh, Đà Nẵng |
+| Vòng lặp | `run()`: `for _ in range(4)` và `if not resp.function_calls` | App đọc yêu cầu, chạy hàm, gửi function responses rồi nhận câu trả lời cuối |
+
+Starter minh họa bằng `while resp.function_calls`; bản hiện tại giữ cùng luồng nhưng giới hạn bốn lượt để tránh lặp vô hạn. `result = get_weather(**fc.args)` là dòng **app thực thi**, còn `genai.Client(...).models.generate_content(...)` chỉ trả yêu cầu/kết quả của model.
+
+### Chạy trên Windows bằng virtualenv gốc
+
+Env ở gốc repo đã được cấu hình Gemini qua YesScale; không cần in hoặc nhập key trong terminal. Từ gốc repo:
+
+```powershell
+.\.venv\Scripts\python.exe 01-function-calling/weather_function_calling.py --output reports/evidence/function_calling_gemini.json
+```
+
+Hoặc từ thư mục của bước 01:
+
+```powershell
+Set-Location 01-function-calling
+..\.venv\Scripts\python.exe weather_function_calling.py --output ../reports/evidence/function_calling_gemini.json
+```
+
+Lệnh này gọi Gemini thật và có thể phát sinh chi phí. Chụp cửa sổ terminal sao cho thấy `[model yêu cầu]`, `[app thực thi]` và `Trả lời:`, lưu `screenshots/01-function-calling.png`.
+
+### Checkpoint đã đối chiếu
+
+- [x] Google SDK gọi Gemini 2.5 Flash thật qua YesScale, đúng câu hỏi cố định.
+- [x] Hai cặp model yêu cầu/app thực thi cho Hà Nội và Đà Nẵng, JSON mock 29°C/30°C.
+- [x] Có câu trả lời cuối dựa trên kết quả tool; [JSON](../reports/evidence/function_calling_gemini.json) và [stdout](../reports/evidence/function_calling_gemini.txt) được giữ.
+- [x] Có [01-function-calling.png](../screenshots/01-function-calling.png) đúng tên yêu cầu, hiển thị stdout thật trong trình duyệt.
+- [ ] Ảnh cửa sổ terminal gốc: chưa chụp trong phiên này. Ảnh hiện có là bản chụp stdout đang xem trong trình duyệt; đổi tên không biến nó thành ảnh terminal.
+
+Ví dụ bổ sung cho API **tương thích OpenAI** giữ cùng cơ chế manual function calling. Nó đọc key ở `04-lab/mcp-client/.env`:
+
+```bash
+uv run --project 04-lab/mcp-client python 01-function-calling/weather_openai_compatible.py --live --output reports/evidence/function_calling_yescale.json
+```
+
+Đây là adapter khác với Google SDK. Evidence gpt-4o-mini cũ được giữ để đối chiếu lịch sử; không dùng nó thay evidence native Gemini ở trên. Mọi lệnh generation đều dùng API và có thể phát sinh chi phí; dữ liệu thời tiết phần này vẫn là mock.
+
 ```bash
 pip install -r ../requirements.txt
 export GEMINI_API_KEY=...
@@ -163,10 +218,18 @@ def get_weather(city: str) -> str:
 **Phần 3 — Vòng lặp** (nhận yêu cầu → chạy → trả lại):
 
 ```python
-while resp.function_calls:
+for _ in range(4):
+    resp = client.models.generate_content(model=MODEL, contents=contents, config=config)
+    if not resp.function_calls:
+        return resp.text
+    contents.append(resp.candidates[0].content)
+    function_responses = []
     for fc in resp.function_calls:
         result = get_weather(**fc.args)   # ← APP chạy, không phải model
-    # gửi result lại cho model để tổng hợp câu trả lời
+        function_responses.append(types.Part.from_function_response(
+            name=fc.name, response={"result": result}
+        ))
+    contents.append(types.Content(role="user", parts=function_responses))
 ```
 
 ---
@@ -200,6 +263,6 @@ while resp.function_calls:
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**MCP giải quyết tất cả các vấn đề trên** → xem [02-mcp-basics/](../02-mcp-basics/)
+**MCP tách tool khỏi app và chuẩn hóa khám phá/gọi tool giữa client–server.** Server sinh schema từ type hints; adapter phía agent vẫn chuyển schema/kết quả sang định dạng mà model provider dùng. Xem [02-mcp-basics/](../02-mcp-basics/).
 
 Bước tiếp theo: [02-mcp-basics/](../02-mcp-basics/) — tách tool ra MCP server độc lập.

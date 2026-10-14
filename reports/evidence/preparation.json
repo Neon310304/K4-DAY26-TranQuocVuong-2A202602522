@@ -1,0 +1,22 @@
+{
+  "timestamp_utc": "2026-10-14T09:28:42.071855+00:00",
+  "repo_url": "https://github.com/Neon310304/K4-DAY26-TranQuocVuong-2A202602522",
+  "upstream": "VinUni-AI20k/Day26-MCP-Tools-Integration",
+  "public": true,
+  "checks": {
+    "repo_fork_named_correctly": true,
+    "screenshots_directory": true,
+    "requirements_install_and_pip_check": true,
+    "gemini_and_weather_credentials": true,
+    "uv_installed": true
+  },
+  "passed_count": 5,
+  "total": 5,
+  "key_scope": "key presence only; Gemini via YesScale execution in function_calling_gemini.json",
+  "gemini_gateway": "YesScale native Gemini /v1beta",
+  "pip_check": "No broken requirements found.",
+  "uv": "uv 0.11.21 (5aa65dd7a 2026-06-11 x86_64-pc-windows-msvc)",
+  "source_hashes": {
+    "requirements.txt": "d1de6cf14b7ec7532687aea6e18bbccf0bc11be54609d76890c8dc77125b3ff5"
+  }
+}

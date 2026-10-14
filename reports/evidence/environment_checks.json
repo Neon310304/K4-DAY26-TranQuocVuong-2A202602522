@@ -1,0 +1,21 @@
+{
+  "timestamp_utc": "2026-10-14T09:13:43.195493+00:00",
+  "scope": "installed_dependency_compatibility_and_known_env_credential_scan",
+  "credential_scan": {
+    "status": "passed",
+    "candidate_files_scanned": 52,
+    "env_ignored": true
+  },
+  "checks": {
+    "mcp-client": {
+      "pip_check": "passed",
+      "lock_check": "passed",
+      "lock_sha256": "fc6059486a6031697571ee133343576b4cd20bc937b3183b8ca4361d0a828f23"
+    },
+    "mcp-server": {
+      "pip_check": "passed",
+      "lock_check": "passed",
+      "lock_sha256": "ac4e04732afa57af3c7c9919b4c87c5bc01cbe6456add6c02a4e3aae73986e1f"
+    }
+  }
+}

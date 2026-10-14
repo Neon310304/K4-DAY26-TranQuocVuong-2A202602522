@@ -1,0 +1,28 @@
+{
+  "timestamp_utc": "2026-10-14T10:48:16.226393+00:00",
+  "scope": "local_Docker_image_build_only;_Cloud_Run_skipped_at_user_request",
+  "build": {
+    "command": [
+      "docker",
+      "build",
+      "--progress=plain",
+      "-t",
+      "day26-weather-mcp:local",
+      "04-lab/mcp-server"
+    ],
+    "exit_code": 0,
+    "image_id": "sha256:af6fcd41907e085f56c8f79a281843f9c0834e95b4cf69ef7bc71c1de8518824",
+    "image_created_utc": "2026-10-14T10:42:41.355360402Z",
+    "log": "reports/evidence/container_build.txt"
+  },
+  "container_runtime_tested": false,
+  "cloud_run_deployed": false,
+  "cloud_run_status": "skipped_by_user",
+  "weatherapi_key_passed_to_build": false,
+  "source_hashes": {
+    "04-lab/mcp-server/Dockerfile": "f551af47f400ad57021eca77b55efe0f974c9781a43477f41a64d4a78f3f6e40",
+    "04-lab/mcp-server/.dockerignore": "1d894da267fc5442d3676b56fec98c9ec176512348f0461a377d1e49f4391b39",
+    "04-lab/mcp-server/pyproject.toml": "4469ee71ba354cde5b1aae446837df26711de462f0eb20af0448f64cb01b2f71",
+    "04-lab/mcp-server/weather.py": "1e6f4cdfc35703f1f81c7744458c5043a43dc91b61f30b7743b09e5585b9b220"
+  }
+}

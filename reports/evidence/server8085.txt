@@ -1,0 +1,9 @@
+﻿MCP endpoint tested: http://127.0.0.1:8085/mcp
+dependencies: passed
+llm_credentials: not_run
+mcp_protocol: passed
+adk_discovery: passed
+live_agent: not_run
+live_weather: not_run
+Scope: mcp_protocol_and_adk_discovery
+Evidence saved: D:\Python\K4-DAY26-TranQuocVuong-2A202602522\reports\evidence\server8085.json

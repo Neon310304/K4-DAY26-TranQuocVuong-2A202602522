@@ -1,0 +1,48 @@
+{
+  "format_version": 1,
+  "timestamp_utc": "2026-10-14T09:07:22.065519+00:00",
+  "scope": "live_yescale_manual_function_calling_with_mock_weather",
+  "status": "passed",
+  "request_model": "gpt-4o-mini",
+  "response_model": "gpt-4o-mini",
+  "prompt": "Thời tiết Hà Nội và Đà Nẵng hôm nay thế nào? Ghi rõ dữ liệu mô phỏng.",
+  "tool_calls": [
+    {
+      "name": "get_weather",
+      "arguments": {
+        "city": "Hà Nội"
+      },
+      "result": {
+        "city": "Hà Nội",
+        "nhiệt_độ": "29°C",
+        "thời_tiết": "trời mưa nhẹ",
+        "độ_ẩm": "82%",
+        "gió": {
+          "hướng": "Đông Nam",
+          "tốc_độ": "12 km/h"
+        }
+      }
+    },
+    {
+      "name": "get_weather",
+      "arguments": {
+        "city": "Đà Nẵng"
+      },
+      "result": {
+        "city": "Đà Nẵng",
+        "nhiệt_độ": "30°C",
+        "thời_tiết": "nhiều mây",
+        "độ_ẩm": "78%",
+        "gió": {
+          "hướng": "Đông",
+          "tốc_độ": "10 km/h"
+        }
+      }
+    }
+  ],
+  "final_response": "Dưới đây là dữ liệu mô phỏng về thời tiết hôm nay của Hà Nội và Đà Nẵng:\n\n### Hà Nội\n- **Nhiệt độ**: 29°C\n- **Thời tiết**: Trời mưa nhẹ\n- **Độ ẩm**: 82%\n- **Gió**: \n  - Hướng: Đông Nam\n  - Tốc độ: 12 km/h\n\n### Đà Nẵng\n- **Nhiệt độ**: 30°C\n- **Thời tiết**: Nhiều mây\n- **Độ ẩm**: 78%\n- **Gió**: \n  - Hướng: Đông\n  - Tốc độ: 10 km/h\n\nNếu bạn cần thêm thông tin, hãy cho tôi biết!",
+  "source_hashes": {
+    "01-function-calling/weather_openai_compatible.py": "82d4c5d01fa4458eb4c3912227c15bcff5c4c479e59008cc2e08c47bcae565cf",
+    "01-function-calling/weather_function_calling.py": "73698e8a246c80a2d96ef92d6a08b0b7a0dbe43f881196ef10955b18216be889"
+  }
+}

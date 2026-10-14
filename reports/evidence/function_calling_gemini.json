@@ -1,0 +1,47 @@
+{
+  "format_version": 1,
+  "timestamp_utc": "2026-10-14T09:24:00.378097+00:00",
+  "status": "passed",
+  "scope": "live_google_genai_manual_function_calling_with_mock_weather",
+  "gateway": "yescale",
+  "request_model": "gemini-2.5-flash",
+  "response_model": "gemini-2.5-flash",
+  "tool_calls": [
+    {
+      "name": "get_weather",
+      "arguments": {
+        "city": "Hà Nội"
+      },
+      "result": {
+        "city": "Hà Nội",
+        "nhiệt_độ": "29°C",
+        "thời_tiết": "trời mưa nhẹ",
+        "độ_ẩm": "82%",
+        "gió": {
+          "hướng": "Đông Nam",
+          "tốc_độ": "12 km/h"
+        }
+      }
+    },
+    {
+      "name": "get_weather",
+      "arguments": {
+        "city": "Đà Nẵng"
+      },
+      "result": {
+        "city": "Đà Nẵng",
+        "nhiệt_độ": "30°C",
+        "thời_tiết": "nhiều mây",
+        "độ_ẩm": "78%",
+        "gió": {
+          "hướng": "Đông",
+          "tốc_độ": "10 km/h"
+        }
+      }
+    }
+  ],
+  "final_response": "Chào bạn! Dưới đây là thông tin thời tiết hôm nay (dữ liệu từ mock của lab) 🌤️:\n\n📍 **Hà Nội:** \n* Nhiệt độ: 29°C | Độ ẩm: 82% 💧\n* Thời tiết: Trời mưa nhẹ, gió Đông Nam 12 km/h 🌧️💨\n* 💡 **Lời khuyên:** Bạn nhớ mang theo ô/dù khi ra ngoài để tránh bị ướt nhé!\n\n📍 **Đà Nẵng:**\n* Nhiệt độ: 30°C | Độẩm: 78% 💧\n* Thời tiết: Nhiều mây, gió Đông 10 km/h 🌤️💨\n* 💡 **Lời khuyên:** Thời tiết khá dễ chịu, rất thích hợp cho các hoạt động dạo phố hoặc ngoài trời. \n\nChúc bạn có một ngày mới thật tuyệt vời! 😊",
+  "source_hashes": {
+    "01-function-calling/weather_function_calling.py": "9384e387581ca8cecf0628b2e8c340d381f8bba4e4cd137c9450964c35158755"
+  }
+}

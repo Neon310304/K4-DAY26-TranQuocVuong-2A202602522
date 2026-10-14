@@ -1,0 +1,6 @@
+﻿Missing bearer token: HTTP 401
+Invalid bearer token: HTTP 401
+Valid bearer token: MCP initialize PASS
+Tools: ['get_weather']
+get_weather(Hanoi): Hanoi: 29°C, trời mưa
+No token value or Authorization header recorded.

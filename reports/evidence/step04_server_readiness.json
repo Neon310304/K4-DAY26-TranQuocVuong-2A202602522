@@ -1,0 +1,69 @@
+{
+  "format_version": 1,
+  "timestamp_utc": "2026-10-14T10:28:25.679214+00:00",
+  "python": "3.12.6",
+  "configuration": {
+    "provider": "yescale",
+    "llm_key_configured": true,
+    "model": "gemini-2.5-flash"
+  },
+  "source_hashes": {
+    "04-lab/mcp-server/weather.py": "1e6f4cdfc35703f1f81c7744458c5043a43dc91b61f30b7743b09e5585b9b220",
+    "04-lab/mcp-server/pyproject.toml": "4469ee71ba354cde5b1aae446837df26711de462f0eb20af0448f64cb01b2f71",
+    "04-lab/mcp-server/uv.lock": "ac4e04732afa57af3c7c9919b4c87c5bc01cbe6456add6c02a4e3aae73986e1f",
+    "04-lab/mcp-client/verify_setup.py": "44413766e55ffc36047cb36387e34c2a3cdd20a974cc7af345990f9e0b9a452a",
+    "04-lab/mcp-client/weather_agent/gemini_gateway.py": "5490cd298491bded60ff33b32393ebbb7680c8749559f239dfd7def2c04e440b",
+    "04-lab/mcp-client/weather_agent/agent.py": "2fb3fdaf7575e8a1084aa8852e56b1074f01cdd3ac1b793ffa08349582459f55",
+    "04-lab/mcp-client/pyproject.toml": "1f85ea80a75ea69b2fc225d58e5b778347e7c53449894ab0b385dbca8faf3fe8",
+    "04-lab/mcp-client/uv.lock": "fc6059486a6031697571ee133343576b4cd20bc937b3183b8ca4361d0a828f23"
+  },
+  "checks": {
+    "dependencies": {
+      "status": "passed"
+    },
+    "llm_credentials": {
+      "status": "not_run",
+      "scope": "presence only; API execution is a separate check"
+    },
+    "mcp_protocol": {
+      "status": "passed",
+      "server": "weather",
+      "protocol_version": "2025-11-25",
+      "tools": [
+        "get_current_weather",
+        "get_forecast",
+        "health_check"
+      ],
+      "health": {
+        "status": "ok",
+        "weather_api_configured": true,
+        "weather_api_verified": false
+      }
+    },
+    "adk_discovery": {
+      "status": "passed",
+      "agent": "weather_agent",
+      "tools": [
+        "get_current_weather",
+        "get_forecast",
+        "health_check"
+      ]
+    },
+    "live_agent": {
+      "status": "not_run"
+    },
+    "live_weather": {
+      "status": "not_run"
+    }
+  },
+  "dependencies": {
+    "mcp": "2.3.0",
+    "google-adk": "2.12.0",
+    "google-genai": "2.30.1",
+    "python-dotenv": "1.2.2",
+    "httpx": "0.28.1",
+    "litellm": "1.105.1"
+  },
+  "passed": true,
+  "scope": "mcp_protocol_and_adk_discovery"
+}

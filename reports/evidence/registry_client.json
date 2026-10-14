@@ -1,0 +1,108 @@
+{
+  "timestamp_utc": "2026-10-14T10:14:44.399950+00:00",
+  "status": "passed",
+  "scope": "actual_registry_python_selection_and_mcp_call_no_llm",
+  "weather_matches": [
+    {
+      "tool": "get_weather",
+      "description": "Lấy thời tiết hiện tại của một thành phố",
+      "version": "1.0.0",
+      "deprecated": false,
+      "parameters": {
+        "city": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "server_name": "weather",
+      "server": {
+        "transport": "stdio",
+        "command": "python",
+        "args": [
+          "../02-mcp-basics/weather_server.py"
+        ],
+        "auth": null
+      }
+    },
+    {
+      "tool": "get_weather_v2",
+      "description": "Lấy thời tiết chi tiết — JSON, hỗ trợ forecast và đơn vị đo",
+      "version": "2.0.0",
+      "deprecated": false,
+      "parameters": {
+        "city": {
+          "type": "string",
+          "required": true
+        },
+        "include_forecast": {
+          "type": "boolean",
+          "required": false,
+          "default": false
+        },
+        "units": {
+          "type": "string",
+          "required": false,
+          "default": "celsius"
+        }
+      },
+      "server_name": "weather-v2",
+      "server": {
+        "transport": "stdio",
+        "command": "python",
+        "args": [
+          "versioned_server.py"
+        ],
+        "auth": null
+      }
+    }
+  ],
+  "best_match": {
+    "tool": "get_weather_v2",
+    "description": "Lấy thời tiết chi tiết — JSON, hỗ trợ forecast và đơn vị đo",
+    "version": "2.0.0",
+    "deprecated": false,
+    "parameters": {
+      "city": {
+        "type": "string",
+        "required": true
+      },
+      "include_forecast": {
+        "type": "boolean",
+        "required": false,
+        "default": false
+      },
+      "units": {
+        "type": "string",
+        "required": false,
+        "default": "celsius"
+      }
+    },
+    "server_name": "weather-v2",
+    "server": {
+      "transport": "stdio",
+      "command": "python",
+      "args": [
+        "versioned_server.py"
+      ],
+      "auth": null
+    }
+  },
+  "tool_arguments": {
+    "city": "Hanoi"
+  },
+  "result": {
+    "api_version": "2.0",
+    "city": "Hanoi",
+    "temp": 29,
+    "units": "celsius",
+    "condition": "trời mưa",
+    "humidity": 82,
+    "wind_speed_kmh": 12,
+    "timestamp": "2026-10-14T10:14:44.015646+00:00"
+  },
+  "source_hashes": {
+    "03-production/registry_client.py": "10359759c6a160b9b7d8edbd1b67137b073e81eea7f575a4aadfce9e69bcea77",
+    "03-production/registry.json": "78bb8aaa298fe60beebbf971472d73d004d861b5430ba21dafdac68fb8a81496",
+    "03-production/versioned_server.py": "782a8469d9f853d0179b1da54a8c3a24edb0af388ea4dadde52e1b42b1901eca"
+  }
+}

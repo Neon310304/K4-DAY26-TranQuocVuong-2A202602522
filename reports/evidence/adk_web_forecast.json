@@ -1,0 +1,220 @@
+{
+  "format_version": 1,
+  "timestamp_utc": "2026-10-14T10:37:21.495301+00:00",
+  "execution_first_event_utc": "2026-10-14T10:33:23.249275+00:00",
+  "execution_last_event_utc": "2026-10-14T10:33:28.766087+00:00",
+  "status": "passed",
+  "scope": "actual_browser_adk_forecast_with_live_gemini_and_weatherapi",
+  "url": "http://127.0.0.1:8001/dev-ui/",
+  "mcp_url": "http://127.0.0.1:8085/mcp",
+  "session_id": "fef25deb-642e-4cf8-bdfd-69d5bae0cf5c",
+  "request": {
+    "appName": "weather_agent",
+    "userId": "user",
+    "sessionId": "fef25deb-642e-4cf8-bdfd-69d5bae0cf5c",
+    "newMessage": {
+      "role": "user",
+      "parts": [
+        {
+          "text": "Hãy gọi get_forecast với city Hanoi và days 3. Trả lời bằng tiếng Việt, liệt kê đúng từng ngày, nhiệt độ cao nhất/thấp nhất, khả năng mưa và UV theo dữ liệu tool."
+        }
+      ]
+    },
+    "streaming": false,
+    "stateDelta": null
+  },
+  "configuration": {
+    "provider": "yescale",
+    "adapter": "google.adk.models.lite_llm.LiteLlm",
+    "endpoint_protocol": "openai-compatible",
+    "requested_model": "gemini-2.5-flash"
+  },
+  "response_models": [
+    "gemini-2.5-flash"
+  ],
+  "function_calls": [
+    {
+      "id": "call_612f1d9e73704742981305b798c51e9a",
+      "args": {
+        "city": "Hanoi",
+        "days": 3
+      },
+      "name": "get_forecast"
+    }
+  ],
+  "function_responses": [
+    {
+      "id": "call_612f1d9e73704742981305b798c51e9a",
+      "name": "get_forecast",
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Weather Forecast for Hanoi, , Vietnam:\n---\n2026-10-14:\nHigh: 34.3°C (93.8°F)\nLow: 24.9°C (76.8°F)\nCondition: Smoky haze\nChance of Rain: 5%\nMax Wind: 18.4 km/h\nUV Index: 7.6\n---\n2026-10-15:\nHigh: 33.6°C (92.5°F)\nLow: 24.8°C (76.6°F)\nCondition: Smoky haze\nChance of Rain: 10%\nMax Wind: 19.4 km/h\nUV Index: 7.4\n---\n2026-10-16:\nHigh: 33.4°C (92.1°F)\nLow: 24.2°C (75.6°F)\nCondition: Smoky haze\nChance of Rain: 17%\nMax Wind: 19.4 km/h\nUV Index: 8.3"
+          }
+        ],
+        "structuredContent": {
+          "result": "Weather Forecast for Hanoi, , Vietnam:\n---\n2026-10-14:\nHigh: 34.3°C (93.8°F)\nLow: 24.9°C (76.8°F)\nCondition: Smoky haze\nChance of Rain: 5%\nMax Wind: 18.4 km/h\nUV Index: 7.6\n---\n2026-10-15:\nHigh: 33.6°C (92.5°F)\nLow: 24.8°C (76.6°F)\nCondition: Smoky haze\nChance of Rain: 10%\nMax Wind: 19.4 km/h\nUV Index: 7.4\n---\n2026-10-16:\nHigh: 33.4°C (92.1°F)\nLow: 24.2°C (75.6°F)\nCondition: Smoky haze\nChance of Rain: 17%\nMax Wind: 19.4 km/h\nUV Index: 8.3"
+        },
+        "isError": false
+      }
+    }
+  ],
+  "final_response": "Dưới đây là dự báo thời tiết 3 ngày tới tại Hà Nội, Việt Nam:\n\n*   **Ngày 14-10-2026:**\n    *   Nhiệt độ: Cao nhất **34.3°C** (93.8°F) / Thấp nhất **24.9°C** (76.8°F)\n    *   Tình trạng: Mù khói (Smoky haze)\n    *   Khả năng mưa: 5%\n    *   Chỉ số UV: 7.6\n\n*   **Ngày 15-10-2026:**\n    *   Nhiệt độ: Cao nhất **33.6°C** (92.5°F) / Thấp nhất **24.8°C** (76.6°F)\n    *   Tình trạng: Mù khói (Smoky haze)\n    *   Khả năng mưa: 10%\n    *   Chỉ số UV: 7.4\n\n*   **Ngày 16-10-2026:**\n    *   Nhiệt độ: Cao nhất **33.4°C** (92.1°F) / Thấp nhất **24.2°C** (75.6°F)\n    *   Tình trạng: Mù khói (Smoky haze)\n    *   Khả năng mưa: 17%\n    *   Chỉ số UV: 8.3",
+  "forecast_values_from_tool": [
+    {
+      "date": "2026-10-14",
+      "high_c": 34.3,
+      "low_c": 24.9,
+      "chance_of_rain_percent": 5,
+      "uv": 7.6
+    },
+    {
+      "date": "2026-10-15",
+      "high_c": 33.6,
+      "low_c": 24.8,
+      "chance_of_rain_percent": 10,
+      "uv": 7.4
+    },
+    {
+      "date": "2026-10-16",
+      "high_c": 33.4,
+      "low_c": 24.2,
+      "chance_of_rain_percent": 17,
+      "uv": 8.3
+    }
+  ],
+  "checks": {
+    "requested_forecast_three_days": true,
+    "call_response_ids_aligned": true,
+    "tool_response_succeeded": true,
+    "three_forecast_days": true,
+    "final_answer_present": true,
+    "final_numbers_match_tool": true
+  },
+  "events": [
+    {
+      "modelVersion": "gemini-2.5-flash",
+      "content": {
+        "parts": [
+          {
+            "functionCall": {
+              "id": "call_612f1d9e73704742981305b798c51e9a",
+              "args": {
+                "city": "Hanoi",
+                "days": 3
+              },
+              "name": "get_forecast"
+            }
+          }
+        ],
+        "role": "model"
+      },
+      "partial": false,
+      "finishReason": "STOP",
+      "usageMetadata": {
+        "cachedContentTokenCount": 0,
+        "candidatesTokenCount": 21,
+        "promptTokenCount": 681,
+        "totalTokenCount": 702
+      },
+      "invocationId": "e-2f1a472c-ec6c-4b9d-b922-289a88b1017d",
+      "author": "weather_agent",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "nodeInfo": {
+        "path": "weather_agent@1"
+      },
+      "longRunningToolIds": [],
+      "id": "b751ff6e-695e-47a9-949a-93b84140026d",
+      "timestamp": 1791974003.2492754
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "functionResponse": {
+              "id": "call_612f1d9e73704742981305b798c51e9a",
+              "name": "get_forecast",
+              "response": {
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Weather Forecast for Hanoi, , Vietnam:\n---\n2026-10-14:\nHigh: 34.3°C (93.8°F)\nLow: 24.9°C (76.8°F)\nCondition: Smoky haze\nChance of Rain: 5%\nMax Wind: 18.4 km/h\nUV Index: 7.6\n---\n2026-10-15:\nHigh: 33.6°C (92.5°F)\nLow: 24.8°C (76.6°F)\nCondition: Smoky haze\nChance of Rain: 10%\nMax Wind: 19.4 km/h\nUV Index: 7.4\n---\n2026-10-16:\nHigh: 33.4°C (92.1°F)\nLow: 24.2°C (75.6°F)\nCondition: Smoky haze\nChance of Rain: 17%\nMax Wind: 19.4 km/h\nUV Index: 8.3"
+                  }
+                ],
+                "structuredContent": {
+                  "result": "Weather Forecast for Hanoi, , Vietnam:\n---\n2026-10-14:\nHigh: 34.3°C (93.8°F)\nLow: 24.9°C (76.8°F)\nCondition: Smoky haze\nChance of Rain: 5%\nMax Wind: 18.4 km/h\nUV Index: 7.6\n---\n2026-10-15:\nHigh: 33.6°C (92.5°F)\nLow: 24.8°C (76.6°F)\nCondition: Smoky haze\nChance of Rain: 10%\nMax Wind: 19.4 km/h\nUV Index: 7.4\n---\n2026-10-16:\nHigh: 33.4°C (92.1°F)\nLow: 24.2°C (75.6°F)\nCondition: Smoky haze\nChance of Rain: 17%\nMax Wind: 19.4 km/h\nUV Index: 8.3"
+                },
+                "isError": false
+              }
+            }
+          }
+        ],
+        "role": "user"
+      },
+      "invocationId": "e-2f1a472c-ec6c-4b9d-b922-289a88b1017d",
+      "author": "weather_agent",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "nodeInfo": {
+        "path": "weather_agent@1"
+      },
+      "id": "4cab0392-d396-43a4-ab9a-74797daf0e0d",
+      "timestamp": 1791974008.739798
+    },
+    {
+      "modelVersion": "gemini-2.5-flash",
+      "content": {
+        "parts": [
+          {
+            "text": "Dưới đây là dự báo thời tiết 3 ngày tới tại Hà Nội, Việt Nam:\n\n*   **Ngày 14-10-2026:**\n    *   Nhiệt độ: Cao nhất **34.3°C** (93.8°F) / Thấp nhất **24.9°C** (76.8°F)\n    *   Tình trạng: Mù khói (Smoky haze)\n    *   Khả năng mưa: 5%\n    *   Chỉ số UV: 7.6\n\n*   **Ngày 15-10-2026:**\n    *   Nhiệt độ: Cao nhất **33.6°C** (92.5°F) / Thấp nhất **24.8°C** (76.6°F)\n    *   Tình trạng: Mù khói (Smoky haze)\n    *   Khả năng mưa: 10%\n    *   Chỉ số UV: 7.4\n\n*   **Ngày 16-10-2026:**\n    *   Nhiệt độ: Cao nhất **33.4°C** (92.1°F) / Thấp nhất **24.2°C** (75.6°F)\n    *   Tình trạng: Mù khói (Smoky haze)\n    *   Khả năng mưa: 17%\n    *   Chỉ số UV: 8.3"
+          }
+        ],
+        "role": "model"
+      },
+      "partial": false,
+      "finishReason": "STOP",
+      "usageMetadata": {
+        "cachedContentTokenCount": 0,
+        "candidatesTokenCount": 339,
+        "promptTokenCount": 1289,
+        "totalTokenCount": 1628
+      },
+      "invocationId": "e-2f1a472c-ec6c-4b9d-b922-289a88b1017d",
+      "author": "weather_agent",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "nodeInfo": {
+        "path": "weather_agent@1"
+      },
+      "id": "d08c5366-c872-4992-8add-cd023b3e2dbe",
+      "timestamp": 1791974008.766087
+    }
+  ],
+  "network_evidence": {
+    "kind": "actual_browser_POST_run_sse_response_body",
+    "path": "reports/evidence/adk_web_forecast.sse.txt",
+    "sha256": "b2020b0bab7e17a11f2a7d21d14884d8796d43b4f213dd908116a66c386cbfb7"
+  },
+  "source_hashes": {
+    "04-lab/mcp-client/weather_agent/agent.py": "2fb3fdaf7575e8a1084aa8852e56b1074f01cdd3ac1b793ffa08349582459f55",
+    "04-lab/mcp-client/weather_agent/gemini_gateway.py": "5490cd298491bded60ff33b32393ebbb7680c8749559f239dfd7def2c04e440b",
+    "04-lab/mcp-server/weather.py": "1e6f4cdfc35703f1f81c7744458c5043a43dc91b61f30b7743b09e5585b9b220",
+    "04-lab/mcp-client/uv.lock": "fc6059486a6031697571ee133343576b4cd20bc937b3183b8ca4361d0a828f23",
+    "04-lab/mcp-server/uv.lock": "ac4e04732afa57af3c7c9919b4c87c5bc01cbe6456add6c02a4e3aae73986e1f"
+  },
+  "screenshot": "screenshots/04-adk-forecast.png"
+}

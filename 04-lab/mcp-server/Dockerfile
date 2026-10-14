@@ -20,4 +20,5 @@ EXPOSE 8080
 ENV PYTHONUNBUFFERED=1
 
 # Run the application
-CMD ["python", "weather.py"]
+ENV PORT=8080
+CMD ["python", "weather.py", "--transport", "streamable-http", "--host", "0.0.0.0"]
